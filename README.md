@@ -1,4 +1,4 @@
-# PyEduBirthdayPerWeekTask
+# PyEduBirthdaysPerWeekTask
 
 Створити функцію get_birthdays_per_week.
 
