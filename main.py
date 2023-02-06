@@ -41,9 +41,9 @@ def get_birthdays_per_week(persons: list) -> None:
 
     # output
     for each in result_dict:
-        print(each, ': ', sep='', end='')
+        print(f"{each + ':':<11}", end='')
         print(", ".join(result_dict[each]))
 
 
 if __name__ == "__main__":
-    get_birthdays_per_week([])
+    get_birthdays_per_week()
