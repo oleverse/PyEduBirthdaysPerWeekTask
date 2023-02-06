@@ -1,11 +1,5 @@
 from datetime import datetime, timedelta
 
-COLLEAGUES = [
-    {"name": "Anna", "birthday": datetime(2008, 2, 11)},
-    {"name": "Notanna", "birthday": datetime(2001, 2, 12)},
-    {"name": "Clare", "birthday": datetime(1996, 12, 30)},
-]
-
 DAYS_AHEAD = 7
 
 
@@ -20,6 +14,7 @@ def get_birthday_people(date: datetime, people: list) -> list:
 
 
 def get_celebration_day(date: datetime) -> str:
+    # if the date is a dayoff we should return Monday
     if date.strftime("%w") in "06":
         return "Monday"
     else:
@@ -27,20 +22,28 @@ def get_celebration_day(date: datetime) -> str:
 
 
 def get_birthdays_per_week(persons: list) -> None:
-    
+    result_dict = {}
+
     current_date = datetime.today()
 
-    week_ahead_list = [(current_date + timedelta(days=d)) for d in range(DAYS_AHEAD)]
-    
-    for d in week_ahead_list:
-        btd_people = get_birthday_people(d, persons)
-    
-        if btd_people:
-            celeb_day = get_celebration_day(d)
-            print(f'{celeb_day}: ', end='')
-            print(", ".join([bp["name"] for bp in btd_people]))
+    for days_delta in range(DAYS_AHEAD + 1):
+        check_date = current_date + timedelta(days=days_delta)
 
+        # get a list of all birthday people for the check date
+        btd_people = get_birthday_people(check_date, persons)
+        if btd_people:
+            celeb_day = "Today" if days_delta == 0 else get_celebration_day(check_date)
+            entry = [bp["name"] for bp in btd_people]
+            try:
+                result_dict[celeb_day].extend(entry)
+            except KeyError:
+                result_dict[celeb_day] = entry
+
+    # output
+    for each in result_dict:
+        print(each, ': ', sep='', end='')
+        print(", ".join(result_dict[each]))
 
 
 if __name__ == "__main__":
-    get_birthdays_per_week(COLLEAGUES)
+    get_birthdays_per_week([])
