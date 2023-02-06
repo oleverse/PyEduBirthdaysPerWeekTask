@@ -1,18 +1,5 @@
 from datetime import datetime, timedelta
 
-COLLEAGUES = [
-    {"name": "Anna", "birthday": datetime(2008, 2, 11), "position": "courier"},
-    {"name": "Notanna", "birthday": datetime(2001, 2, 12)},
-    {"name": "Noclare", "birthday": datetime(2003, 2, 13)},
-    {"name": "Clare", "birthday": datetime(1996, 2, 6)},
-    {"name": "Clare1", "birthday": datetime(1997, 2, 7)},
-    {"name": "Clare2", "birthday": datetime(1998, 2, 7)},
-    {"name": "Ivan", "birthday": datetime(1999, 2, 8)},
-    {"name": "Ole", "birthday": datetime(1983, 2, 9)},
-    {"name": "Notole", "birthday": datetime(2002, 2, 9)},
-    {"name": "Onotole", "birthday": datetime(2000, 2, 10)},
-]
-
 DAYS_AHEAD = 7
 
 
@@ -59,4 +46,4 @@ def get_birthdays_per_week(persons: list) -> None:
 
 
 if __name__ == "__main__":
-    get_birthdays_per_week(COLLEAGUES)
+    get_birthdays_per_week([])
